@@ -13,6 +13,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (context) => const Screen1());
       case screen2: 
         return MaterialPageRoute(builder: (context) => const Screen2());
+      default:
+        return null;
     }
   }
 }
