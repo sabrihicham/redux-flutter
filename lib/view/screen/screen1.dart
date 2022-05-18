@@ -22,13 +22,11 @@ class _Screen1State extends State<Screen1> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const Text('The button has been pushed this many times:'),
             StoreConnector<AppState, String>(
               converter: (store) => store.state.counter.toString(),
-              builder: (context, count) {
-                return Text(
-                  'The button has been pushed this many times: $count',
-                );
-              },
+              builder: (context, counter) => 
+                Text(counter, style: Theme.of(context).textTheme.headline4),
             )
           ],
         ),
@@ -37,13 +35,17 @@ class _Screen1State extends State<Screen1> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton(
-            onPressed: () => StoreProvider.of<AppState>(context).dispatch(Increment()),
+            onPressed: () =>
+                StoreProvider.of<AppState>(context).dispatch(Increment()),
+            heroTag: 'tag1',
             tooltip: 'Increment',
             child: const Icon(Icons.add),
           ),
           const SizedBox(width: 10),
           FloatingActionButton(
-            onPressed: () => StoreProvider.of<AppState>(context).dispatch(Decrement()),
+            onPressed: () =>
+                StoreProvider.of<AppState>(context).dispatch(Decrement()),
+            heroTag: 'tag2',
             tooltip: 'Decrement',
             child: const Icon(Icons.remove),
           )
