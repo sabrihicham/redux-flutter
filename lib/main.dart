@@ -6,23 +6,16 @@ import 'package:incredux/view/routes/router.dart';
 import 'package:redux/redux.dart';
 
 void main() {
-  final store = Store<CounterState>(counterReducer, initialState: CounterState(0));
-
-  runApp(ReduxApp(store: store));
+  runApp(const ReduxApp());
 }
 
 class ReduxApp extends StatelessWidget {
-  const ReduxApp({
-    Key? key,
-    required this.store,
-  }) : super(key: key);
-
-  final Store<CounterState> store;
+  const ReduxApp({Key? key,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return StoreProvider(
-      store: store,
+      store: Store<AppState>(counterReducer, initialState: AppState(counter: 0)),
       child: MaterialApp(
         theme: ThemeData.dark(),
         onGenerateRoute: AppRouter().onGenerateRoute

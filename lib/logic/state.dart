@@ -1,4 +1,4 @@
-class CounterState {
+class AppState {
   int counter;
-  CounterState(this.counter);
+  AppState({required this.counter});
 }

@@ -18,10 +18,10 @@ class _HomeState extends State<Home> {
         children: [
           ElevatedButton(
             onPressed: () => Navigator.pushNamed(context, screen1),
-            child: const Text("User1")),
+            child: const Text(user1)),
           ElevatedButton(
              onPressed: () => Navigator.pushNamed(context, screen2),  
-             child: const Text("User2"))
+             child: const Text(user2))
         ],
       ),
     ),

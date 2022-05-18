@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:incredux/constants/strings.dart';
 import 'package:incredux/logic/actions.dart';
 import 'package:incredux/logic/state.dart';
 
@@ -16,12 +17,12 @@ class _Screen1State extends State<Screen1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("User 1")),
+      appBar: AppBar(title: const Text(user1)),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            StoreConnector<CounterState, String>(
+            StoreConnector<AppState, String>(
               converter: (store) => store.state.counter.toString(),
               builder: (context, count) {
                 return Text(
@@ -35,30 +36,16 @@ class _Screen1State extends State<Screen1> {
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          StoreConnector<CounterState, VoidCallback>(
-            converter: (store) {
-              return () => store.dispatch(Increment());
-            },
-            builder: (context, callback) {
-              return FloatingActionButton(
-                onPressed: callback,
-                tooltip: 'Increment',
-                child: const Icon(Icons.add),
-              );
-            },
+          FloatingActionButton(
+            onPressed: () => StoreProvider.of<AppState>(context).dispatch(Increment()),
+            tooltip: 'Increment',
+            child: const Icon(Icons.add),
           ),
           const SizedBox(width: 10),
-          StoreConnector<CounterState, VoidCallback>(
-            converter: (store) {
-              return () => store.dispatch(Decrement());
-            },
-            builder: (context, callback) {
-              return FloatingActionButton(
-                onPressed: callback,
-                tooltip: 'Decrement',
-                child: const Icon(Icons.minimize),
-              );
-            },
+          FloatingActionButton(
+            onPressed: () => StoreProvider.of<AppState>(context).dispatch(Decrement()),
+            tooltip: 'Decrement',
+            child: const Icon(Icons.remove),
           )
         ],
       ),
